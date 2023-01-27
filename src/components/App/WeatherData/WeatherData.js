@@ -109,7 +109,7 @@ function WeatherData() {
                     }) : ""}
                 </div>
                 <div className="mapContainer">
-                    {weatherData ? <Map lat={weatherData.location.lat} long={weatherData.location.lon}/> : "" }
+                    {weatherData ? <Map lat={weatherData.location.lat} long={weatherData.location.lon} deg={weatherData.current.temp_f}/> : "" }
                 </div>            
            </section>
 
