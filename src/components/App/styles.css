@@ -1,0 +1,54 @@
+@font-face {
+    font-family: "noto sans";
+    src: url("./../FontFiles/NotoSansNKo-Regular.ttf");
+}
+body{
+    margin: 0px;
+    font-family: "noto sans";
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+}
+
+.currentTemp{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgb(0, 0, 75);
+    width: 300px;
+    border-radius: 20px;
+    align-self: center;
+}
+
+.high_low{
+    display: flex;
+    width: 250px;
+    justify-content: space-between;
+}
+
+.allHourlyTemp{
+    align-self: center;
+    width: 400px;
+    border: 1px solid rgb(0, 0, 75);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.hourlyContainer{
+    display: flex;
+    justify-content: space-evenly;
+    border: 1px solid rgb(0, 0, 75);
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+}
+
+.hourlyTitle{
+    color: rgb(168, 168, 168);
+    text-align: left;
+}
+
+
