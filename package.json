@@ -14,10 +14,12 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.6",
     "@mui/system": "^5.11.5",
     "@react-google-maps/api": "^2.17.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

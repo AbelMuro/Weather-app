@@ -1,6 +1,6 @@
 @font-face {
     font-family: "noto sans";
-    src: url("./../FontFiles/NotoSansNKo-Regular.ttf");
+    src: url("./../../FontFiles/NotoSansNKo-Regular.ttf");
 }
 body{
     margin: 0px;
@@ -29,6 +29,12 @@ body{
     justify-content: space-between;
 }
 
+.hourlyTemp_and_map{
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+}
+
 .allHourlyTemp{
     align-self: center;
     width: 400px;
@@ -51,4 +57,10 @@ body{
     text-align: left;
 }
 
-
+.mapContainer{
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 20px;
+    width: 400px;
+    align-self: center;
+}
