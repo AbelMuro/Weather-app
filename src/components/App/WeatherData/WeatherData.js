@@ -1,9 +1,11 @@
 import React, {useEffect, useState, useRef, memo} from 'react';
+import CityData from './CityData';
+import HourlyTemp from "./HourlyTemp";
 import Map from './Map';
+import OtherData from './OtherData';
 import {useLocation, useNavigate} from 'react-router-dom';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import {v4 as uuid} from 'uuid'
 import './styles.css';
+import clouds from './images/clouds background.jpg';
 
 function WeatherData() {
     const [weatherData, setWeatherData] = useState(null);
@@ -36,11 +38,10 @@ function WeatherData() {
                     return;
                 }
                 console.log(results);
+                const body = document.querySelector("body");
+                body.style.backgroundImage = `url('${clouds}')`;
                 setWeatherData(results); 
             })
-            .catch((err) => {
-                console.error(err);
-            });
     }, [])
 
 
@@ -67,53 +68,21 @@ function WeatherData() {
     return(
         <main className="container">
             <section className="currentTemp">
-                <h1 className="cityName">
-                    {weatherData ?  weatherData.location.name : ""}
-                </h1>
-                <h2 className="temperature">
-                    {weatherData ?  weatherData.current.temp_f : ""} &#8457;
-                </h2>
-                <h3 className="condition">
-                    {weatherData ?  weatherData.current.condition.text : ""}    
-                </h3>
-                {weatherData ? 
-                        <img src={weatherData.current.condition.icon} className="conditionIcon"/> 
-                        : ""}
-                <div className="high_low">
-                    <p className="high">
-                        High: {weatherData ?  weatherData.forecast.forecastday[0].day.maxtemp_f : ""} &#8457;    
-                    </p>
-                    <p className="low">
-                        Low: {weatherData ?  weatherData.forecast.forecastday[0].day.mintemp_f  : ""} &#8457;
-                    </p>
-                </div>
+                {weatherData ? <CityData weatherData={weatherData}/> : ""}
             </section>
 
            <section className="hourlyTemp_and_map">
-                <div className="allHourlyTemp">
-                    <h4 className="hourlyTitle">
-                        <AccessTimeIcon fontSize={"small"}/> Hourly Temperature for the day.
-                    </h4>
-                    {hourlyWeather ? hourlyWeather.map((hour, i) => {
-                        return(
-                            <div className="hourlyContainer" key={uuid()}>
-                                <p className="hourlyTime">
-                                    {hoursDisplayed.current[i]}
-                                </p>
-                                <img className="hourlyConditionImage" src={hour.condition.icon}/>
-                                <p className="hourlyTemp">
-                                    {hour.temp_f} &#8457;
-                                </p>
-                            </div>
-                        )
-                    }) : ""}
+                <div className="allHoursTemperature">
+                    <HourlyTemp hoursDisplayed={hoursDisplayed.current} hourlyWeather={hourlyWeather}/>
                 </div>
                 <div className="mapContainer">
                     {weatherData ? <Map lat={weatherData.location.lat} long={weatherData.location.lon} deg={weatherData.current.temp_f}/> : "" }
                 </div>            
            </section>
 
-            
+            <section className="otherWeatherData">
+                {weatherData ? <OtherData weatherData={weatherData}/> : ""}
+            </section>           
         </main>
     )
 }

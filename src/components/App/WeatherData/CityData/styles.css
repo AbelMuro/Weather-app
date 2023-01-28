@@ -1,0 +1,11 @@
+.high_low{
+    display: flex;
+    width: 250px;
+    justify-content: space-between;
+}
+
+.hourlyTemp_and_map{
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+}

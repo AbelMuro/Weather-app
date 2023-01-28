@@ -23,38 +23,12 @@ body{
     align-self: center;
 }
 
-.high_low{
-    display: flex;
-    width: 250px;
-    justify-content: space-between;
-}
-
-.hourlyTemp_and_map{
-    display: flex;
-    flex-direction: column;
-    row-gap: 50px;
-}
-
-.allHourlyTemp{
+.allHoursTemperature{
     align-self: center;
     width: 400px;
     border: 1px solid rgb(0, 0, 75);
     border-radius: 20px;
     padding: 10px;
-}
-
-.hourlyContainer{
-    display: flex;
-    justify-content: space-evenly;
-    border: 1px solid rgb(0, 0, 75);
-    border-bottom: none;
-    border-left: none;
-    border-right: none;
-}
-
-.hourlyTitle{
-    color: rgb(168, 168, 168);
-    text-align: left;
 }
 
 .mapContainer{
@@ -63,4 +37,11 @@ body{
     border-radius: 20px;
     width: 400px;
     align-self: center;
+}
+
+.otherWeatherData{
+    align-self: center;
+    display: grid;
+    grid-template-columns: 200px 200px;
+    gap: 20px;
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {GoogleMap, useLoadScript, Marker} from '@react-google-maps/api';
 import StylingMap from './StylingMap';
 import "./styles.css";
@@ -10,6 +10,15 @@ function Map({lat, long, deg}) {
         googleMapsApiKey: google_api_key,
     });
 
+    useEffect(() => {
+        if(!map) return;
+        let marker = new google.maps.Marker({                                   
+            position: {lat: lat, lng: long},                                      
+            map: map,                                                           
+            title: `${Math.floor(deg)}°F`,
+            label: {color: "white", fontSize: "10px", text: `${Math.floor(deg)}°F`,}                           
+        })
+    }, [map])
 
     return isLoaded ? (
         <GoogleMap
@@ -24,12 +33,6 @@ function Map({lat, long, deg}) {
                 mapTypeControl: false,
                 styles: StylingMap
             }}>
-                <Marker icon={{
-                    url: `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${deg}°F|FF0000|000000`,        //this is where i left off
-                    scaledSize: new google.maps.Size(50, 70),
-                }} position={{lat: lat, lng: long}}>
-
-                </Marker>
         </GoogleMap>
     ) : (<></>)
 }
