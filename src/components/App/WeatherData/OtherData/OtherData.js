@@ -4,7 +4,7 @@ import "./styles.css";
 function OtherData({weatherData}) {
     return(
         <>
-        <div className="UVindex">
+        <div className="UVindex background_color">
             <p className="titleData">
                 UV Index
             </p>
@@ -12,7 +12,7 @@ function OtherData({weatherData}) {
                 {weatherData.current.uv} 
             </p>
         </div>
-        <div className="sunrise_sunset">
+        <div className="sunrise_sunset background_color">
             <p className="titleData">
                 Sunrise
             </p>
@@ -23,7 +23,7 @@ function OtherData({weatherData}) {
                 Sunset : {weatherData.forecast.forecastday[0].astro.sunset}
             </p>
         </div>    
-        <div className="wind_mph">
+        <div className="wind_mph background_color">
             <p className={"titleData"}>
                 Wind
             </p>
@@ -34,7 +34,7 @@ function OtherData({weatherData}) {
                 {weatherData.current.wind_dir}
             </p>
         </div>    
-        <div className="precipitation">
+        <div className="precipitation background_color">
             <p className="titleData">
                 Precipitation
             </p>
@@ -42,7 +42,7 @@ function OtherData({weatherData}) {
                 {weatherData.current.precip_in}"
             </p>
         </div>
-        <div className="humidity">
+        <div className="humidity background_color">
             <p className="titleData">
                 Humidity
             </p>
@@ -50,7 +50,7 @@ function OtherData({weatherData}) {
                 {weatherData.current.humidity}%
             </p>
         </div>
-        <div className="pressure">
+        <div className="pressure background_color">
             <p className="titleData">
                 Pressure
             </p>

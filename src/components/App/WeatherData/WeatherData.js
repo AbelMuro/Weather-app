@@ -5,7 +5,7 @@ import Map from './Map';
 import OtherData from './OtherData';
 import {useLocation, useNavigate} from 'react-router-dom';
 import './styles.css';
-import clouds from './images/clouds background.jpg';
+import images from './images';
 
 function WeatherData() {
     const [weatherData, setWeatherData] = useState(null);
@@ -38,8 +38,6 @@ function WeatherData() {
                     return;
                 }
                 console.log(results);
-                const body = document.querySelector("body");
-                body.style.backgroundImage = `url('${clouds}')`;
                 setWeatherData(results); 
             })
     }, [])
@@ -64,20 +62,82 @@ function WeatherData() {
         
     }, [weatherData])
 
+    useEffect(() => {
+        if(!weatherData) return;
+
+        const condition = weatherData.current.condition.text.toLowerCase();
+        const is_day = weatherData.current.is_day;
+        const body = document.querySelector("body");
+        const boxColor = document.querySelectorAll(".background_color");
+
+
+        body.style.backgroundImage = `url('${images["rain"]}')`;   
+        body.style.backgroundColor = "#2b2c2c";
+        boxColor.forEach((box) => {
+            box.style.backgroundColor = "#707071";
+        })
+ 
+        //if its cloudy in any way
+        if(condition.includes("cloud") || condition.includes("overcast")){
+            body.style.backgroundImage = is_day ? `url('${images["dayClouds"]}')` : `url('${images["nightClouds"]}')`;     
+            body.style.backgroundColor = is_day ? "#81add4" : "#060a15";
+            boxColor.forEach((box) => {
+                box.style.backgroundColor = is_day ? "#3376e4" : "#001f75";
+                box.style.color = is_day ? "black" : "white";
+            })
+        }
+
+        //if it rains in any way
+        else if(condition.includes("rain") || condition.includes("thunder")){
+            body.style.backgroundImage = `url('${images["rain"]}')`;   
+            body.style.backgroundColor = "#2b2c2c";
+            boxColor.forEach((box) => {
+                box.style.backgroundColor = "#707071";
+            })
+        }
+                                       
+        //if its clear in any way
+        else if(condition.includes("sun") || condition.includes("clear")){
+            body.style.backgroundImage = is_day? `url('${images["sunny"]}')` : `url('${images["night"]}')`;  
+            body.style.backgroundColor = is_day ? "#8fceed" :  "#1a243b";
+            boxColor.forEach((box) => {
+                box.style.backgroundColor = is_day ? "#3376e4" : "#3b435f";
+            })
+        }
+            
+        //if its foggy in any way
+        else if (condition.includes("fog") || condition.includes("mist")){
+            body.style.backgroundImage = `url('${images["fog"]}')`;
+            body.style.backgroundColor = "#dadada";
+            boxColor.forEach((box) => {
+                box.style.backgroundColor = "#b4b4b4";
+            })
+        }
+            
+        return () => {
+            body.style.backgroundImage = "";
+            body.style.backgroundColor = "";
+            boxColor.forEach((box) => {
+                box.style.backgroundColor = "";
+            })
+        }
+
+    }, [weatherData])
+
 
     return(
         <main className="container">
-            <section className="currentTemp">
+            <section className="currentTemp background_color">
                 {weatherData ? <CityData weatherData={weatherData}/> : ""}
             </section>
 
            <section className="hourlyTemp_and_map">
-                <div className="allHoursTemperature">
+                <div className="allHoursTemperature background_color">
                     <HourlyTemp hoursDisplayed={hoursDisplayed.current} hourlyWeather={hourlyWeather}/>
                 </div>
-                <div className="mapContainer">
+                {/*<div className="mapContainer background_color">
                     {weatherData ? <Map lat={weatherData.location.lat} long={weatherData.location.lon} deg={weatherData.current.temp_f}/> : "" }
-                </div>            
+                </div> */}        
            </section>
 
             <section className="otherWeatherData">

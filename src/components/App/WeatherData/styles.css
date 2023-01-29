@@ -2,10 +2,6 @@
     font-family: "noto sans";
     src: url("./../../FontFiles/NotoSansNKo-Regular.ttf");
 }
-body{
-    margin: 0px;
-    font-family: "noto sans";
-}
 
 .container{
     display: flex;

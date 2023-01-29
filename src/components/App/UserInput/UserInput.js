@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {TextField, Button} from '@mui/material';
 import {styled} from "@mui/system";
 import {useNavigate} from 'react-router-dom';
+import wholeWorld from './images/whole world background.jpg';
 import "./styles.css";
 
 const StyledButton = styled(Button)`
@@ -31,9 +32,13 @@ function UserInput() {
         console.log(location)
         navigate(`/${location}`, {state: {data: location}});
     }
+    useEffect(() => {
+        const body = document.querySelector(".background_color");
+        body.style.backgroundColor = "white";
+    },[])
 
     return(
-        <div className="inputContainer">
+        <div className="inputContainer background_color">
             <h1 className="title">
                 Weather App
             </h1>
