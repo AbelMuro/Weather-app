@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {GoogleMap, useLoadScript, Marker} from '@react-google-maps/api';
+import {GoogleMap, useLoadScript} from '@react-google-maps/api';
 import StylingMap from './StylingMap';
 import "./styles.css";
 

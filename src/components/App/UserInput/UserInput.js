@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {TextField, Button} from '@mui/material';
 import {styled} from "@mui/system";
 import {useNavigate} from 'react-router-dom';
-import wholeWorld from './images/whole world background.jpg';
+import worldMap from './images/whole world background.jpg';
 import "./styles.css";
 
 const StyledButton = styled(Button)`
@@ -33,8 +33,16 @@ function UserInput() {
         navigate(`/${location}`, {state: {data: location}});
     }
     useEffect(() => {
-        const body = document.querySelector(".background_color");
-        body.style.backgroundColor = "white";
+        const boxColor = document.querySelector(".background_color");
+        const body = document.querySelector("body");
+        body.style.backgroundImage = `url(${worldMap})`
+        body.style.backgroundSize = "cover";
+        boxColor.style.backgroundColor = "white";
+        
+        return () => {
+            boxColor.style.backgroundColor = "";
+            body.style.backgroundSize = "";
+        }
     },[])
 
     return(

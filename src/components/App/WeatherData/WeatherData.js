@@ -70,12 +70,6 @@ function WeatherData() {
         const body = document.querySelector("body");
         const boxColor = document.querySelectorAll(".background_color");
 
-
-        body.style.backgroundImage = `url('${images["rain"]}')`;   
-        body.style.backgroundColor = "#2b2c2c";
-        boxColor.forEach((box) => {
-            box.style.backgroundColor = "#707071";
-        })
  
         //if its cloudy in any way
         if(condition.includes("cloud") || condition.includes("overcast")){
@@ -88,7 +82,9 @@ function WeatherData() {
         }
 
         //if it rains in any way
-        else if(condition.includes("rain") || condition.includes("thunder")){
+        else if(condition.includes("rain") || condition.includes("thunder") || 
+                condition.includes("drizzle") || condition.includes("shower") ||
+                condition.includes("hail")){
             body.style.backgroundImage = `url('${images["rain"]}')`;   
             body.style.backgroundColor = "#2b2c2c";
             boxColor.forEach((box) => {
@@ -135,9 +131,9 @@ function WeatherData() {
                 <div className="allHoursTemperature background_color">
                     <HourlyTemp hoursDisplayed={hoursDisplayed.current} hourlyWeather={hourlyWeather}/>
                 </div>
-                {/*<div className="mapContainer background_color">
+                <div className="mapContainer background_color">
                     {weatherData ? <Map lat={weatherData.location.lat} long={weatherData.location.lon} deg={weatherData.current.temp_f}/> : "" }
-                </div> */}        
+                </div>         
            </section>
 
             <section className="otherWeatherData">

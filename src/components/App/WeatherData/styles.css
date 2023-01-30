@@ -21,7 +21,7 @@
 
 .allHoursTemperature{
     align-self: center;
-    width: 400px;
+    width: 300px;
     border: 1px solid rgb(0, 0, 75);
     border-radius: 20px;
     padding: 10px;
@@ -31,13 +31,42 @@
     padding: 10px;
     border: 1px solid;
     border-radius: 20px;
-    width: 400px;
+    width: 310px;
     align-self: center;
+    color:rgb(45, 45, 70)
 }
 
 .otherWeatherData{
     align-self: center;
     display: grid;
-    grid-template-columns: 200px 200px;
+    grid-template-columns: 200px;
     gap: 20px;
+}
+
+.hourlyTemp_and_map{
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+}
+
+@media (min-width: 500px){
+    .otherWeatherData{
+        grid-template-columns: 200px 200px;
+    }
+}
+
+@media (min-width: 700px){
+    .otherWeatherData{
+        grid-template-columns: repeat(3, 200px);
+    }
+}
+
+@media (min-width: 800px){
+    .hourlyTemp_and_map{
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .mapContainer{
+        height: 846px;
+    }
 }
