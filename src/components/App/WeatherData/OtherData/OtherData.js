@@ -28,7 +28,6 @@ function OtherData({weatherData}) {
 
     function determineRisk(){
         const UVindex= weatherData.current.uv;
-        console.log(UVindex);
 
         if(0 <= UVindex && UVindex <= 2.9){
             return(<p>Low</p>)
@@ -68,7 +67,7 @@ function OtherData({weatherData}) {
         <div className="UVindex background_color">
             <p className="titleData">
                 <WbSunnyIcon/> 
-                <p>UV Index</p>
+                <span>UV Index </span>
             </p>
             <p>
                 {weatherData.current.uv} 
@@ -85,7 +84,7 @@ function OtherData({weatherData}) {
         <div className="sunrise_sunset background_color">
             <p className="titleData">
                 <WbTwilightIcon/>
-                <p>Sunrise</p>
+                <span>Sunrise </span>
             </p>
             <p>
                 {weatherData.forecast.forecastday[0].astro.sunrise}
@@ -100,7 +99,7 @@ function OtherData({weatherData}) {
         <div className="wind_mph background_color">
             <p className="titleData">
                 <AirIcon/>
-                <p>Wind</p>
+                <span>Wind </span>
             </p>
             <div className="compassWrapper">
                 <div className="compass">
@@ -124,7 +123,7 @@ function OtherData({weatherData}) {
         <div className="precipitation background_color">
             <p className="titleData">
                 <InvertColorsIcon/>
-                <p>Precipitation</p>
+                <span>Precipitation </span>
             </p>
             <p>
                 {weatherData.current.precip_in}"
@@ -136,7 +135,7 @@ function OtherData({weatherData}) {
         <div className="humidity background_color">
             <p className="titleData">
                 <WavesIcon/>
-                <p>Humidity</p>
+                <span>Humidity</span>
             </p>
             
             <p>
@@ -146,17 +145,17 @@ function OtherData({weatherData}) {
         <div className="pressure background_color">
             <p className="titleData">
                 <SpeedIcon/>
-                <p>Pressure</p>
+                <span>Pressure </span>
             </p>
             
             <p className="wind_graph">
-                <p>
+                <span>
                     <span>{weatherData.current.pressure_in} </span>
                     <span>inHg</span> 
-                </p>
-                <p className="background_color">
+                </span>
+                <span className="background_color">
                     Low &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;High
-                </p>
+                </span>
             </p>
             <div className="index">
                
