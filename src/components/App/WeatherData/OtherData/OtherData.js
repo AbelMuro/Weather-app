@@ -1,5 +1,11 @@
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import AdjustIcon from '@mui/icons-material/Adjust';
+import WbTwilightIcon from '@mui/icons-material/WbTwilight';
+import AirIcon from '@mui/icons-material/Air';
+import InvertColorsIcon from '@mui/icons-material/InvertColors';
+import WavesIcon from '@mui/icons-material/Waves';
+import SpeedIcon from '@mui/icons-material/Speed';
 import {styled} from '@mui/system';
 import React, { useEffect } from 'react';
 import images from './images';
@@ -61,7 +67,8 @@ function OtherData({weatherData}) {
         <>
         <div className="UVindex background_color">
             <p className="titleData">
-                UV Index
+                <WbSunnyIcon/> 
+                <p>UV Index</p>
             </p>
             <p>
                 {weatherData.current.uv} 
@@ -77,7 +84,8 @@ function OtherData({weatherData}) {
         </div>
         <div className="sunrise_sunset background_color">
             <p className="titleData">
-                Sunrise
+                <WbTwilightIcon/>
+                <p>Sunrise</p>
             </p>
             <p>
                 {weatherData.forecast.forecastday[0].astro.sunrise}
@@ -90,10 +98,10 @@ function OtherData({weatherData}) {
             </p>
         </div>    
         <div className="wind_mph background_color">
-            <p className={"titleData"}>
-                Wind
+            <p className="titleData">
+                <AirIcon/>
+                <p>Wind</p>
             </p>
-
             <div className="compassWrapper">
                 <div className="compass">
                     <p>N</p>
@@ -115,27 +123,44 @@ function OtherData({weatherData}) {
         </div>    
         <div className="precipitation background_color">
             <p className="titleData">
-                Precipitation
+                <InvertColorsIcon/>
+                <p>Precipitation</p>
             </p>
             <p>
                 {weatherData.current.precip_in}"
             </p>
+            <p>
+                in the last 24h
+            </p>
         </div>
         <div className="humidity background_color">
             <p className="titleData">
-                Humidity
+                <WavesIcon/>
+                <p>Humidity</p>
             </p>
+            
             <p>
                 {weatherData.current.humidity}%
             </p>
         </div>
         <div className="pressure background_color">
             <p className="titleData">
-                Pressure
+                <SpeedIcon/>
+                <p>Pressure</p>
             </p>
-            <p>
-               {weatherData.current.pressure_in}  
+            
+            <p className="wind_graph">
+                <p>
+                    <span>{weatherData.current.pressure_in} </span>
+                    <span>inHg</span> 
+                </p>
+                <p className="background_color">
+                    Low &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;High
+                </p>
             </p>
+            <div className="index">
+               
+            </div>
         </div>
         </>
 

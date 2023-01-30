@@ -70,3 +70,17 @@
         height: 846px;
     }
 }
+
+@media (min-width: 1100px){
+    .mapContainer{
+        width: 400px;
+    }
+    .allHoursTemperature{
+        width: 400px;
+    }
+    .hourlyTemp_and_map{
+        width: 950px;
+        margin: auto;
+    }
+
+}
