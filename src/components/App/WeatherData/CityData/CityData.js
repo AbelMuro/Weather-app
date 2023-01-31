@@ -4,7 +4,7 @@ import "./styles.css";
 function CityData({weatherData}) {
 
     return(
-        <>
+        <section className="currentTemp background_color">
             <h1 className="cityName">
                 {weatherData.location.name}
             </h1>
@@ -23,7 +23,8 @@ function CityData({weatherData}) {
                     Low: {weatherData.forecast.forecastday[0].day.mintemp_f} &#8457;
                 </p>
             </div>
-        </>)
+        </section>
+        )
 }
 
 export default CityData;

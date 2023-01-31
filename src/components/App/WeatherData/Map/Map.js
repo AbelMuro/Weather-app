@@ -20,21 +20,25 @@ function Map({lat, long, deg}) {
         })
     }, [map])
 
-    return isLoaded ? (
-        <GoogleMap
-            mapContainerClassName="map"
-            zoom={10}
-            onLoad={(map) => {setMap(map)}}
-            center={{lat: lat, lng: long}}
-            options={{
-                zoomControl: false,
-                fullscreenControl: false,
-                streetViewControl: false,
-                mapTypeControl: false,
-                styles: StylingMap
-            }}>
-        </GoogleMap>
-    ) : (<></>)
+    return (
+        <div className="mapContainer background_color">
+            {isLoaded ? (
+            <GoogleMap
+                mapContainerClassName="map"
+                zoom={10}
+                onLoad={(map) => {setMap(map)}}
+                center={{lat: lat, lng: long}}
+                options={{
+                    zoomControl: false,
+                    fullscreenControl: false,
+                    streetViewControl: false,
+                    mapTypeControl: false,
+                    styles: StylingMap
+                }}>
+            </GoogleMap>) : <></>}
+        </div>
+
+    )
 }
 
 export default Map;

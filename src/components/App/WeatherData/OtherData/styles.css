@@ -204,3 +204,10 @@
     bottom: -17px;
     left: -3px;
 }
+
+.otherWeatherData{
+    align-self: center;
+    display: grid;
+    grid-template-columns: 200px;
+    gap: 20px;
+}

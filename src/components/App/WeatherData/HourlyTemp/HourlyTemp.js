@@ -28,7 +28,7 @@ function HourlyTemp({weatherData}) {
 
 
     return(
-        <>
+        <div className="allHoursTemperature background_color">
             <h4 className="hourlyTitle">
                 <AccessTimeIcon fontSize={"small"}/> Hourly Temperature for the day.
             </h4>
@@ -45,7 +45,7 @@ function HourlyTemp({weatherData}) {
                     </div>
                 )
             }) : ""}
-        </>
+        </div>
     )
 }
 

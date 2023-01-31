@@ -4,6 +4,7 @@ import CityData from './CityData';
 import HourlyTemp from "./HourlyTemp";
 import Map from './Map';
 import OtherData from './OtherData';
+import LoadingScreen from './LoadingScreen';
 import {useLocation, useNavigate} from 'react-router-dom';
 import './styles.css';
 import images from './images';
@@ -47,7 +48,7 @@ function WeatherData() {
         const is_day = weatherData.current.is_day;
         const body = document.querySelector("body");
         const boxColor = document.querySelectorAll(".background_color");
-
+        console.log(boxColor);
  
         //if its cloudy in any way
         if(condition.includes("cloud") || condition.includes("overcast")){
@@ -111,26 +112,17 @@ function WeatherData() {
     }, [weatherData])
 
 
-    return(
+    return weatherData ? (
         <main className="container">
-            <section className="currentTemp background_color">
-                {weatherData ? <CityData weatherData={weatherData}/> : ""}
-            </section>
+            <CityData weatherData={weatherData}/> 
 
            <section className="hourlyTemp_and_map">
-                <div className="allHoursTemperature background_color">
-                    {weatherData ? <HourlyTemp weatherData={weatherData}/> : ""}
-                </div>
-                <div className="mapContainer background_color">
-                    {weatherData ? <Map lat={weatherData.location.lat} long={weatherData.location.lon} deg={weatherData.current.temp_f}/> : "" }
-                </div>         
+                <HourlyTemp weatherData={weatherData}/>
+                <Map lat={weatherData.location.lat} long={weatherData.location.lon} deg={weatherData.current.temp_f}/>
            </section>
-
-            <section className="otherWeatherData">
-                {weatherData ? <OtherData weatherData={weatherData}/> : ""}
-            </section>           
+            <OtherData weatherData={weatherData}/>
         </main>
-    )
+    ) : (<LoadingScreen/>)
 }
 
 export default memo(WeatherData);
