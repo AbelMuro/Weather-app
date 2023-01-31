@@ -10,7 +10,6 @@ function HourlyTemp({weatherData}) {
     const afternoonHours = ["12pm", "1pm", "2pm", "3pm", "4pm", "5pm" , "6pm", "7pm", "8pm", "9pm", "10pm", "11pm"]
 
     useEffect(() => {
-        if(!weatherData) return;
         const date = new Date();
         const currentHour = date.getHours();
 
@@ -18,14 +17,15 @@ function HourlyTemp({weatherData}) {
             hoursDisplayed.current = midnightHours;
             const temp = weatherData.forecast.forecastday[0].hour;
             setHourlyWeather(temp.slice(0, 12));
+            console.log(temp.slice(0,12))
         }
             
         else {
             hoursDisplayed.current = afternoonHours;
             const temp = weatherData.forecast.forecastday[0].hour;
             setHourlyWeather(temp.slice(12, 24));
+            console.log(temp.slice(12,24))
         }
-        
     }, [])
 
 
