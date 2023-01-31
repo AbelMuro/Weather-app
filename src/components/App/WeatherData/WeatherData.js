@@ -52,7 +52,6 @@ function WeatherData() {
         //if its cloudy in any way
         if(condition.includes("cloud") || condition.includes("overcast")){
             body.style.backgroundImage = is_day ? `url('${images["dayClouds"]}')` : `url('${images["nightClouds"]}')`;     
-            body.style.backgroundColor = is_day ? "#81add4" : "#060a15";
             boxColor.forEach((box) => {
                 box.style.backgroundColor = is_day ? "#3376e4" : "#001f75";
                 box.style.color = is_day ? "black" : "white";
@@ -66,7 +65,6 @@ function WeatherData() {
                 condition.includes("hail")){
             body.style.backgroundImage = `url('${images["rain"]}')`; 
             body.style.color = "white";  
-            body.style.backgroundColor = "#2b2c2c";
             boxColor.forEach((box) => {
                 box.style.backgroundColor = "#707071";
             })
@@ -77,7 +75,6 @@ function WeatherData() {
         else if(condition.includes("sun") || condition.includes("clear")){
             body.style.backgroundImage = is_day? `url('${images["sunny"]}')` : `url('${images["night"]}')`;  
             body.style.color = is_day ? "black" : "white";
-            body.style.backgroundColor = is_day ? "#8fceed" :  "#1a243b";
             boxColor.forEach((box) => {
                 box.style.backgroundColor = is_day ? "#3376e4" : "#3b435f";
             })
@@ -87,9 +84,17 @@ function WeatherData() {
         //if its foggy in any way
         else if (condition.includes("fog") || condition.includes("mist")){
             body.style.backgroundImage = `url('${images["fog"]}')`;
-            body.style.backgroundColor = "#dadada";
             boxColor.forEach((box) => {
                 box.style.backgroundColor = "#b4b4b4";
+            })
+            dispatch({type: "set", background_color: boxColor[0].style.backgroundColor, text_color: "black"})
+        }
+
+        //if its snowing in any way
+        else if (condition.includes("snow") || condition.includes("flurries")){
+            body.style.backgroundImage = `url('${images["snow"]}')`;
+            boxColor.forEach((box) => {
+                box.style.backgroundColor = "rgb(185, 185, 185)";
             })
             dispatch({type: "set", background_color: boxColor[0].style.backgroundColor, text_color: "black"})
         }

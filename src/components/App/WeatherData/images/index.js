@@ -1,5 +1,6 @@
 import dayClouds from './day cloudy background.jpg';
 import nightClouds from './night clouds background.jpg';
+import snow from './snow background.jpg';
 import rain from './rain background.jpg';
 import sunny from './sun background.webp';
 import night from './night background.png';
@@ -11,5 +12,6 @@ export default {
     "sunny": sunny,
     "night": night,
     "fog": fog,
-    "rain": rain
+    "rain": rain,
+    "snow": snow
 }

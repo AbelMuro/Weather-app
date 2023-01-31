@@ -62,30 +62,20 @@ function OtherData({weatherData}) {
     },[])
 
     useEffect(() => {
-        /* 50deg to 300 deg*/
-        /* 28.5 to 31.5*/
+        let deg = 41.5;
+        const currentPressure = weatherData.current.pressure_in.toFixed(1);
 
-        /* 28.5 -> 50deg*/
-        /* 29 -> 70deg */
-        /* 29.5 -> 90deg*/
-        /* 30 -> 110deg*/
-        /* 30.5 -> 160deg*/
-        /* 31 -> 250deg*/
-        /* 31.5 - > 300deg*/
-        let currentPressureDeg;
-        const currentPressure = weatherData.current.pressure_in;
-        const pressureUnits = {"28.5": "50deg", 
-                               "29": "70deg", 
-                               "29.5": "90deg", 
-                               "30": "130deg",
-                               "30.5" : "160deg",
-                               "31": "250deg",
-                               "31.5" : "300deg"}
-        for(let prop in pressureUnits){
-
+        for(let i = 28.5; i <= 31.5; i += 0.1){
+            deg += 8.5; 
+            console.log(currentPressure == i.toFixed(1))          
+            if(currentPressure == i.toFixed(1)){
+                deg += "deg";
+                break;
+            }
         }
-        //const dot = document.querySelector(".pressure_arrow");
-        //dot.style.transform = `transform: rotate(${weatherData}) translateX(-50%);`
+        console.log(deg)
+        const dot = document.querySelector(".pressure_arrow");
+        dot.style.transform = `rotate(${deg}) translateX(-50%)`;
     }, [])
 
 
@@ -177,7 +167,7 @@ function OtherData({weatherData}) {
             
             <div className="pressure_gauge">
                 <span>
-                    <span>{weatherData.current.pressure_in} </span>
+                    <span>{weatherData.current.pressure_in.toFixed(1)} </span>
                     <span>inHg</span> 
                 </span>
                 <span className="background_color">
