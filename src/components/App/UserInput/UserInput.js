@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useDispatch } from 'react-redux';
 import {TextField, Button} from '@mui/material';
 import {styled} from "@mui/system";
 import {useNavigate} from 'react-router-dom';
-import worldMap from './images/whole world background.jpg';
 import "./styles.css";
 
 const StyledButton = styled(Button)`
@@ -10,18 +10,23 @@ const StyledButton = styled(Button)`
     color: white;
     margin-top: 10px;
 
-    & :hover{
+    &: hover{
         background-color: darkblue;
-        color: blue;
     }
 
-    & :active{
-        background-color: grey;
+    &: active{
+        background-color: rgb(0, 0, 124);
     }
+`
+
+const StyledInput = styled(TextField)`
+    background-color: white;
+
 `
 
 function UserInput() {
     const [location, setLocation] = useState("");
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -29,24 +34,16 @@ function UserInput() {
     }
 
     const handleClick = () => {
-        console.log(location)
         navigate(`/${location}`, {state: {data: location}});
     }
+
     useEffect(() => {
-        const boxColor = document.querySelector(".background_color");
-        const body = document.querySelector("body");
-        body.style.backgroundImage = `url(${worldMap})`
-        body.style.backgroundSize = "cover";
-        boxColor.style.backgroundColor = "white";
-        
-        return () => {
-            boxColor.style.backgroundColor = "";
-            body.style.backgroundSize = "";
-        }
-    },[])
+        dispatch({type: "set", background_color: "black", text_color: "lightblue"})
+    }, [])
+
 
     return(
-        <div className="inputContainer background_color">
+        <div className="inputContainer">
             <h1 className="title">
                 Weather App
             </h1>
@@ -57,7 +54,7 @@ function UserInput() {
                 2. city, state <br/>
                 3. city <br/>
             </p>
-            <TextField value={location} onChange={handleChange} label={"Enter City"} />
+            <StyledInput value={location} onChange={handleChange} label={"Enter City"} />
             <StyledButton onClick={handleClick}> 
                 Submit
             </StyledButton>

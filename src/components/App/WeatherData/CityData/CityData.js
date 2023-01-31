@@ -2,6 +2,7 @@ import React from "react";
 import "./styles.css";
 
 function CityData({weatherData}) {
+
     return(
         <>
             <h1 className="cityName">

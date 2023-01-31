@@ -59,7 +59,35 @@ function OtherData({weatherData}) {
     useEffect(() => {
         const arrow = document.querySelector(".arrow");
         arrow.style.transform = `translate(-50%, -50%) rotate(${weatherData.current.wind_degree}deg)`;
-    })
+    },[])
+
+    useEffect(() => {
+        /* 50deg to 300 deg*/
+        /* 28.5 to 31.5*/
+
+        /* 28.5 -> 50deg*/
+        /* 29 -> 70deg */
+        /* 29.5 -> 90deg*/
+        /* 30 -> 110deg*/
+        /* 30.5 -> 160deg*/
+        /* 31 -> 250deg*/
+        /* 31.5 - > 300deg*/
+        let currentPressureDeg;
+        const currentPressure = weatherData.current.pressure_in;
+        const pressureUnits = {"28.5": "50deg", 
+                               "29": "70deg", 
+                               "29.5": "90deg", 
+                               "30": "130deg",
+                               "30.5" : "160deg",
+                               "31": "250deg",
+                               "31.5" : "300deg"}
+        for(let prop in pressureUnits){
+            console.log(prop);
+            console.log(pressureUnits[prop])
+        }
+        //const dot = document.querySelector(".pressure_arrow");
+        //dot.style.transform = `transform: rotate(${weatherData}) translateX(-50%);`
+    }, [])
 
 
     return(
@@ -148,7 +176,7 @@ function OtherData({weatherData}) {
                 <span>Pressure </span>
             </p>
             
-            <p className="wind_graph">
+            <div className="pressure_gauge">
                 <span>
                     <span>{weatherData.current.pressure_in} </span>
                     <span>inHg</span> 
@@ -156,10 +184,12 @@ function OtherData({weatherData}) {
                 <span className="background_color">
                     Low &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;High
                 </span>
-            </p>
-            <div className="index">
-               
+                <div className="pressure_arrow">
+                    <div className="point"></div>
+                </div>
             </div>
+            <div className="index"></div>
+            
         </div>
         </>
 

@@ -1,7 +1,7 @@
 body{
     margin: 0px;
     font-family: "noto sans";
-    background-repeat: no-repeat;
+    background-image: url("./images/whole world background.jpg");
     background-attachment: fixed;
     background-position: center;
     background-size: cover;

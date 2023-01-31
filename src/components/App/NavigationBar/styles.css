@@ -1,0 +1,11 @@
+.navBar{
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.logo{
+    font-weight: 600;
+    font-size: 18px;
+}

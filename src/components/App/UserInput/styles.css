@@ -1,4 +1,6 @@
 .inputContainer{
+    background-color: black;
+    color: lightblue;
     display: flex;
     flex-direction: column;
     justify-content: center;

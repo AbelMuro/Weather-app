@@ -1,4 +1,5 @@
-import React, {useEffect, useState, useRef, memo} from 'react';
+import React, {useEffect, useState, memo} from 'react';
+import {useDispatch} from 'react-redux';
 import CityData from './CityData';
 import HourlyTemp from "./HourlyTemp";
 import Map from './Map';
@@ -9,15 +10,12 @@ import images from './images';
 
 function WeatherData() {
     const [weatherData, setWeatherData] = useState(null);
-    const [hourlyWeather, setHourlyWeather] = useState(null);
+    const dispatch = useDispatch();
     const {state} = useLocation();
     const navigate = useNavigate();
-    const hoursDisplayed = useRef([]);
-    const midnightHours = ["12am", "1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am"];
-    const afternoonHours = ["12pm", "1pm", "2pm", "3pm", "4pm", "5pm" , "6pm", "7pm", "8pm", "9pm", "10pm", "11pm"]
                     
     const encode = (location) => {
-        return encodeURIComponent(location)
+        return encodeURIComponent(location);
     }
 
     useEffect(() => {
@@ -37,30 +35,9 @@ function WeatherData() {
                     navigate("/");
                     return;
                 }
-                console.log(results);
                 setWeatherData(results); 
             })
     }, [])
-
-
-    useEffect(() => {
-        if(!weatherData) return;
-        const date = new Date();
-        const currentHour = date.getHours();
-
-        if(currentHour <= 12){
-            hoursDisplayed.current = midnightHours;
-            const temp = weatherData.forecast.forecastday[0].hour;
-            setHourlyWeather(temp.slice(0, 12));
-        }
-            
-        else {
-            hoursDisplayed.current = afternoonHours;
-            const temp = weatherData.forecast.forecastday[0].hour;
-            setHourlyWeather(temp.slice(12, 24));
-        }
-        
-    }, [weatherData])
 
     useEffect(() => {
         if(!weatherData) return;
@@ -79,26 +56,31 @@ function WeatherData() {
                 box.style.backgroundColor = is_day ? "#3376e4" : "#001f75";
                 box.style.color = is_day ? "black" : "white";
             })
+            dispatch({type: "set", background_color: boxColor[0].style.backgroundColor, text_color: "black"})
         }
 
         //if it rains in any way
         else if(condition.includes("rain") || condition.includes("thunder") || 
                 condition.includes("drizzle") || condition.includes("shower") ||
                 condition.includes("hail")){
-            body.style.backgroundImage = `url('${images["rain"]}')`;   
+            body.style.backgroundImage = `url('${images["rain"]}')`; 
+            body.style.color = "white";  
             body.style.backgroundColor = "#2b2c2c";
             boxColor.forEach((box) => {
                 box.style.backgroundColor = "#707071";
             })
+            dispatch({type: "set", background_color: boxColor[0].style.backgroundColor, text_color: "white"})
         }
                                        
         //if its clear in any way
         else if(condition.includes("sun") || condition.includes("clear")){
             body.style.backgroundImage = is_day? `url('${images["sunny"]}')` : `url('${images["night"]}')`;  
+            body.style.color = is_day ? "black" : "white";
             body.style.backgroundColor = is_day ? "#8fceed" :  "#1a243b";
             boxColor.forEach((box) => {
                 box.style.backgroundColor = is_day ? "#3376e4" : "#3b435f";
             })
+            dispatch({type: "set", background_color: boxColor[0].style.backgroundColor, text_color: body.style.color})
         }
             
         //if its foggy in any way
@@ -108,10 +90,12 @@ function WeatherData() {
             boxColor.forEach((box) => {
                 box.style.backgroundColor = "#b4b4b4";
             })
+            dispatch({type: "set", background_color: boxColor[0].style.backgroundColor, text_color: "black"})
         }
             
         return () => {
             body.style.backgroundImage = "";
+            body.style.color = "";
             body.style.backgroundColor = "";
             boxColor.forEach((box) => {
                 box.style.backgroundColor = "";
@@ -129,7 +113,7 @@ function WeatherData() {
 
            <section className="hourlyTemp_and_map">
                 <div className="allHoursTemperature background_color">
-                    <HourlyTemp hoursDisplayed={hoursDisplayed.current} hourlyWeather={hourlyWeather}/>
+                    {weatherData ? <HourlyTemp weatherData={weatherData}/> : ""}
                 </div>
                 <div className="mapContainer background_color">
                     {weatherData ? <Map lat={weatherData.location.lat} long={weatherData.location.lon} deg={weatherData.current.temp_f}/> : "" }

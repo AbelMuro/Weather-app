@@ -1,5 +1,26 @@
+.cityName, .temperature, .condition, .high, .low{
+    margin: 10px 0px 10px 0px;
+}
+
 .high_low{
     display: flex;
     width: 250px;
     justify-content: space-between;
+}
+
+.cityName{
+    font-size: 35px;
+}
+
+.temperature{
+    font-size: 30px;
+}
+
+.condition{
+    font-size: 25px;
+}
+
+.conditionIcon{
+    object-fit: contain;
+    width: 100px
 }
