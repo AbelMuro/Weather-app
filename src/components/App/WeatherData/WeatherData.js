@@ -35,6 +35,7 @@ function WeatherData() {
                     navigate("/");
                     return;
                 }
+                console.log(results)
                 setWeatherData(results); 
             })
     }, [])

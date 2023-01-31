@@ -82,8 +82,7 @@ function OtherData({weatherData}) {
                                "31": "250deg",
                                "31.5" : "300deg"}
         for(let prop in pressureUnits){
-            console.log(prop);
-            console.log(pressureUnits[prop])
+
         }
         //const dot = document.querySelector(".pressure_arrow");
         //dot.style.transform = `transform: rotate(${weatherData}) translateX(-50%);`

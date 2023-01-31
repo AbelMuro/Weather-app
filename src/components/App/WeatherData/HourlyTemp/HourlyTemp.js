@@ -17,14 +17,12 @@ function HourlyTemp({weatherData}) {
             hoursDisplayed.current = midnightHours;
             const temp = weatherData.forecast.forecastday[0].hour;
             setHourlyWeather(temp.slice(0, 12));
-            console.log(temp.slice(0,12))
         }
             
         else {
             hoursDisplayed.current = afternoonHours;
             const temp = weatherData.forecast.forecastday[0].hour;
             setHourlyWeather(temp.slice(12, 24));
-            console.log(temp.slice(12,24))
         }
     }, [])
 
