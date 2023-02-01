@@ -3,7 +3,6 @@
     --farthest: 20;
 }
 
-
 .UVindex, .sunrise_sunset, .wind_mph,
 .precipitation, .humidity, .pressure{
     justify-self: center;

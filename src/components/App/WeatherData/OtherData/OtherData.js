@@ -67,14 +67,12 @@ function OtherData({weatherData}) {
         const currentPressure = weatherData.current.pressure_in.toFixed(1);
 
         for(let i = 28.5; i <= 31.5; i += 0.1){                         //we map the values 28.5 through 31.5 with the angles between 50deg and 300deg
-            deg += 8.5;                                                 // 28.5 -> 50deg
-            console.log(currentPressure == i.toFixed(1))                // 31.5 -> 300deg
-            if(currentPressure == i.toFixed(1)){
+            deg += 8.5;                                                 // 28.5 -> 50deg        
+            if(currentPressure == i.toFixed(1)){                        // 31.5 -> 300deg
                 deg += "deg";
                 break;
             }
         }
-        console.log(deg)
         const dot = document.querySelector(".pressure_arrow");
         dot.style.transform = `rotate(${deg}) translateX(-50%)`;
     }, [])

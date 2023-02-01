@@ -1,0 +1,29 @@
+.loadingOtherData{
+    margin: auto;
+    display: grid;
+    grid-template-columns: 150px;
+    width: 150px;
+    justify-content: space-evenly;
+    gap: 30px;
+}
+
+@media(min-width: 400px){
+    .loadingOtherData{
+        grid-template-columns: repeat(2, 150px);
+        width: 360px;
+    }
+}
+
+@media (min-width: 700px){
+    .loadingOtherData{
+        grid-template-columns: repeat(3, 150px);
+        width: 540px;
+    }
+}
+
+@media (min-width: 800px){
+    .loadingOtherData{
+        grid-template-columns: repeat(4, 150px);
+        width: 720px;
+    }
+}

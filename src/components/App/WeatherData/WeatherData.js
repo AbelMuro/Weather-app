@@ -36,20 +36,17 @@ function WeatherData() {
                     navigate("/");
                     return;
                 }
-                console.log(results)
                 setWeatherData(results); 
             })
     }, [])
 
-    useEffect(() => {
+  useEffect(() => {
         if(!weatherData) return;
-
         const condition = weatherData.current.condition.text.toLowerCase();
         const is_day = weatherData.current.is_day;
-        const body = document.querySelector("body");
-        const boxColor = document.querySelectorAll(".background_color");
-        console.log(boxColor);
- 
+        const body = document.querySelector("body");                        //selecting the body to set an image for the background
+        const boxColor = document.querySelectorAll(".background_color");    //selecting all boxes in the dom to change the background color according to the condition of the weather
+
         //if its cloudy in any way
         if(condition.includes("cloud") || condition.includes("overcast")){
             body.style.backgroundImage = is_day ? `url('${images["dayClouds"]}')` : `url('${images["nightClouds"]}')`;     
@@ -57,7 +54,7 @@ function WeatherData() {
                 box.style.backgroundColor = is_day ? "#3376e4" : "#001f75";
                 box.style.color = is_day ? "black" : "white";
             })
-            dispatch({type: "set", background_color: boxColor[0].style.backgroundColor, text_color: "black"})
+            dispatch({type: "set", background_color: boxColor[0].style.backgroundColor, text_color: boxColor[0].style.color})
         }
 
         //if it rains in any way
@@ -112,17 +109,16 @@ function WeatherData() {
     }, [weatherData])
 
 
-    return weatherData ? (
+   return weatherData ? (
         <main className="container">
-            <CityData weatherData={weatherData}/> 
-
+           <CityData weatherData={weatherData}/> 
            <section className="hourlyTemp_and_map">
                 <HourlyTemp weatherData={weatherData}/>
                 <Map lat={weatherData.location.lat} long={weatherData.location.lon} deg={weatherData.current.temp_f}/>
            </section>
-            <OtherData weatherData={weatherData}/>
+           <OtherData weatherData={weatherData}/>
         </main>
-    ) : (<LoadingScreen/>)
+    ) : ((<LoadingScreen/>))
 }
 
 export default memo(WeatherData);
